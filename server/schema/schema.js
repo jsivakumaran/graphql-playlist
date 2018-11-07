@@ -1,5 +1,7 @@
 const graphql = require('graphql');
 
+const _ = require('lodash');
+
 const { GraphQLObjectType, GraphQLString, GraphQLSchema } = graphql;
 
 //faking the database data in an array for now
@@ -26,6 +28,7 @@ const RootQuery = new GraphQLObjectType({
       args: {id: {type: GraphQLString}},
       resolve(parent, args){
         //code to get data from db / other source
+        return _.find(books, {id: args.id});
       }
     }
   }
